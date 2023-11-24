@@ -34,6 +34,7 @@ plot_measures(leaves_meas,
               vjust = 60,
               col = "red")
 
+
 #################### Correção de medidas ############
 seg <- 
   image_segment_iter(leaves,
@@ -117,6 +118,7 @@ fviz_pca_ind(pcam, repel = TRUE)
 set_wd_here()
 img <- image_import("sev_orange.jpg", plot = TRUE)
 sev <- measure_disease_iter(img, viewer = "mapview")
+sev$results
 
 ## Utilizando índices de cores
 set_wd_here("sevsoja")
@@ -139,12 +141,11 @@ sev_lote$severity |>
 
 ################### Análise de ortomosaicos #################
 
-library(pliman)
 set_wd_here("orthomosaics")
 
 ### Índices de vegetação
 # Mosaicos disponíveis no pipeline do FieldimageR (https://github.com/OpenDroneMap/FIELDimageR)
-# Gráto ao Filipe Inacio Matias (https://github.com/filipematias23) por disponibilizar esses materiais
+# Grato ao Filipe Matias (https://github.com/filipematias23) por disponibilizar esses materiais
 pot <- mosaic_input("potato.tif")
 res_pot <- 
   mosaic_analyze(pot,
@@ -186,6 +187,9 @@ mosaic_view(dsm,
 
 
 ## Índices multiespectrais
+# Mosaico disponibilizado pelo Programa Trigo UFV
+# Dr. Maicon Nardino (https://www.linkedin.com/in/maicon-nardino-091253268/)
+# Caique Machado (https://www.linkedin.com/in/caique-machado-e-silva-404415154/)
 trigo <- mosaic_input("trigo_ex.tif")
 mosaic_view(trigo)
 trigoan <- 

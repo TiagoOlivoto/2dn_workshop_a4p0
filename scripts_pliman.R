@@ -46,6 +46,7 @@ leaves_meas_cor <-
                   reference_area = 20)
 image_view(leaves, object = leaves_meas_cor)
 
+
 ################### Análise em lote ##################
 set_wd_here("potato_leaves")
 potato <-
@@ -139,6 +140,7 @@ sev_lote$severity |>
   geom_histogram(bins = 8)
 
 
+
 ################### Análise de ortomosaicos #################
 
 set_wd_here("orthomosaics")
@@ -183,7 +185,30 @@ mosaic_view(dsm,
             attribute = "coverage")
 
 
+# Stand de plantas e CV na linha de semeadura
+mosaic <- mosaic_input("standcount.tif")
+an <- mosaic_analyze(mosaic,
+                     r = 1, g = 2, b = 3,
+                     ncol = 7,
+                     nrow = 1,
+                     segment_individuals = TRUE,
+                     segment_index = "GLI",
+                     check_shapefile = FALSE,
+                     map_individuals = TRUE,
+                     attribute = "n")
+an$result_individ_map
 
+# overlap the two plots
+mosaic_view(mosaic,
+            r = 1, g = 2, b = 3,
+            shapefile = an$result_plot_summ,
+            color_regions = custom_palette(c("red", "green", "yellow"), n = 10),
+            attribute = c("cv"),
+            alpha = 0.6) +
+  mosaic_view(mosaic,
+              r = 1, g = 2, b = 3,
+              shapefile = an$result_indiv,
+              attribute = c("area"))
 
 
 ## Índices multiespectrais
@@ -211,6 +236,7 @@ trigoan$map_plot
 library(pliman)
 set_wd_here("orthomosaics")
 moni <- mosaic_input("monitor.jpg")
+mosaic_view(moni, r = 1, g = 2, b = 3)
 # one block with 10 plot
 # 8 plots additional
 monires <- 
@@ -277,4 +303,9 @@ mosaic_view(moni,
             r = 1, g = 2, b = 3,
             shapefile = dfpredicted,
             attribute = "rgmedio")
-  
+
+
+
+
+
+

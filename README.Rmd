@@ -1,0 +1,6 @@
+# Sobre esse material
+
+Material preparado para o [2º Workshop de Experimentação na Agricultura 4.0](https://www.expstat.com/eventos/link2work).
+
+Pastas:
+* Orthomosaics: Pasta contendo mosaicos RGB e multiespectrais
